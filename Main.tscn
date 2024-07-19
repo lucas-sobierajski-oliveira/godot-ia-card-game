@@ -1,0 +1,121 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2eqn3fja5qk2"]
+
+[ext_resource type="Script" path="res://Me.gd" id="1_0lpt4"]
+[ext_resource type="Script" path="res://GameManager.gd" id="1_vs2iq"]
+[ext_resource type="Texture2D" uid="uid://d2h5l7jm311w6" path="res://assets/cards/CardBack.png" id="3_mqben"]
+[ext_resource type="Script" path="res://Deck.gd" id="4_06gpd"]
+[ext_resource type="Script" path="res://IA.gd" id="5_qpwhy"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_vs2iq")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(384, 216)
+zoom = Vector2(1.5, 1.5)
+
+[node name="Me" type="Node2D" parent="."]
+position = Vector2(16, 168)
+script = ExtResource("1_0lpt4")
+
+[node name="Card1" type="Sprite2D" parent="Me"]
+position = Vector2(256, 216)
+texture = ExtResource("3_mqben")
+
+[node name="Card2" type="Sprite2D" parent="Me"]
+position = Vector2(312, 216)
+texture = ExtResource("3_mqben")
+
+[node name="Card3" type="Sprite2D" parent="Me"]
+position = Vector2(368, 216)
+texture = ExtResource("3_mqben")
+
+[node name="Card4" type="Sprite2D" parent="Me"]
+position = Vector2(424, 216)
+texture = ExtResource("3_mqben")
+
+[node name="Card5" type="Sprite2D" parent="Me"]
+position = Vector2(480, 216)
+texture = ExtResource("3_mqben")
+
+[node name="Label" type="Label" parent="Me"]
+offset_left = 152.0
+offset_top = 192.0
+offset_right = 211.0
+offset_bottom = 241.0
+text = "bit: 1
+chips: 8"
+
+[node name="ActionButtons" type="HBoxContainer" parent="Me"]
+offset_left = 520.0
+offset_top = 200.0
+offset_right = 669.0
+offset_bottom = 240.0
+
+[node name="AddOne" type="Button" parent="Me/ActionButtons"]
+layout_mode = 2
+text = "+1"
+
+[node name="SubOne" type="Button" parent="Me/ActionButtons"]
+layout_mode = 2
+text = "-1"
+
+[node name="Fold" type="Button" parent="Me/ActionButtons"]
+layout_mode = 2
+text = "done"
+
+[node name="Done" type="Button" parent="Me/ActionButtons"]
+layout_mode = 2
+text = "fold"
+
+[node name="IA" type="Node2D" parent="."]
+position = Vector2(16, -168)
+script = ExtResource("5_qpwhy")
+
+[node name="Card1" type="Sprite2D" parent="IA"]
+position = Vector2(256, 216)
+texture = ExtResource("3_mqben")
+
+[node name="Card2" type="Sprite2D" parent="IA"]
+position = Vector2(312, 216)
+texture = ExtResource("3_mqben")
+
+[node name="Card3" type="Sprite2D" parent="IA"]
+position = Vector2(368, 216)
+texture = ExtResource("3_mqben")
+
+[node name="Card4" type="Sprite2D" parent="IA"]
+position = Vector2(424, 216)
+texture = ExtResource("3_mqben")
+
+[node name="Card5" type="Sprite2D" parent="IA"]
+position = Vector2(480, 216)
+texture = ExtResource("3_mqben")
+
+[node name="Label" type="Label" parent="IA"]
+offset_left = 152.0
+offset_top = 192.0
+offset_right = 211.0
+offset_bottom = 241.0
+text = "bit: 1
+chips: 8"
+
+[node name="Deck" type="Node" parent="."]
+script = ExtResource("4_06gpd")
+
+[node name="DealCardsButton" type="Button" parent="."]
+offset_left = 328.0
+offset_top = 168.0
+offset_right = 432.0
+offset_bottom = 216.0
+text = "deal cards"
+
+[node name="GameText" type="Label" parent="."]
+offset_left = 456.0
+offset_top = 184.0
+offset_right = 556.0
+offset_bottom = 207.0
+text = "Você ganhou"
+
+[connection signal="pressed" from="Me/ActionButtons/AddOne" to="Me" method="increase_bet"]
+[connection signal="pressed" from="Me/ActionButtons/SubOne" to="Me" method="decrease_bet"]
+[connection signal="pressed" from="DealCardsButton" to="." method="deal_cards"]
