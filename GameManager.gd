@@ -6,7 +6,7 @@ extends Node2D
 @onready var deal_cards_button = $DealCardsButton
 @onready var game_text = $GameText
 
-var api_key = 'sk-proj-3ALWUwPuGH9MVIalvJuKT3BlbkFJt1SIp8PRhGRbHTjhfDhU'
+var api_key = ''
 var url = 'https://api.openai.com/v1/chat/completions'
 var temperature := 0.5
 var max_tokens := 1024
